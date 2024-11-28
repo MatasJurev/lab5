@@ -18,6 +18,17 @@ def get_dir(prev_node, curr_node):
     elif prev_y > curr_y:
         return 3
 
+def get_command(prev_dir, dir):
+    ans = dir-prev_dir
+    return ans if ans >= 0 else ans+4
+
+def addm(path,dirs):
+    dirs.insert(0, 4)
+    dirs.insert(0, 4)
+    dirs.append(4)
+    path.insert(0, (-1, 2))
+    path.append((5, 3))
+    return path,dirs
 
 def dijkstra(grid, start, end):
     rows, cols = len(grid), len(grid[0])
@@ -75,8 +86,16 @@ def dijkstra(grid, start, end):
         dirs.append(get_dir(prev_node, node))
         prev_node = node
 
-    return dirs
+    return path, dirs
 
+def print_table(path, dirs):
+    path, dirs = addm(path,dirs)
+    #print(path,dirs)
+    #print(len(path), len(dirs))
+    #print()
+
+    for i in range(1,len(path)):
+        print(f"{path[i]} | {dirs[i-1]},{dirs[i]} | {get_command(dirs[i-1],dirs[i])}")
 
 matrix = [
     [1, 1, 1, 1, 1],
@@ -89,6 +108,5 @@ matrix = [
 start = (0, 2)  
 end = (4, 3)    
 
-dirs = dijkstra(matrix, start, end)
-print("Judėjimo kryptys:", dirs)
-input()
+path, dirs = dijkstra(matrix, start, end)
+print_table(path, dirs)
