@@ -88,4 +88,3 @@ end = (4, 3)
 
 dirs = dijkstra(matrix, start, end)
 print("Judėjimo kryptys:", dirs)
-input()
