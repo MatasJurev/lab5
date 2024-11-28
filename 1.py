@@ -56,7 +56,6 @@ def main():
     shortest_path = dijkstra(graph, start_node, end_node)
 
     print("Trumpiausias kelias tarp viršūnių 1 ir 5:", shortest_path)
-    input()
 
 
 if __name__ == "__main__":
